@@ -310,7 +310,7 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav navbar-right"> 
+      <ul class="navbar-nav navbar-right" *ngIf="!identity"> 
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/login']">Login <span class="sr-only">(current)</span></a>
         </li>
@@ -319,23 +319,31 @@
         </li>    
       </ul> 
 
-      <ul class="navbar-nav navbar-right "> 
+      <ul class="navbar-nav navbar-right " *ngIf="identity && identity.name"> 
+        <li *ngIf="identity && identity.image!=null" class="nav-item" >
+          <div class="mask_avatar">
+            <img src="{{url+'user/download/avatar/'+identity.image}}" >
+          </div>
+          
+        </li>  
         <li class="nav-item dropdown active ">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{identity.name}}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            {{identity.name + ' ' + identity.surname}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Crear Post</a>
             <a class="dropdown-item" href="#">Crear Categoria</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Mi perfil</a>
-            <a class="dropdown-item" href="#">Ajustes</a>
-            <a class="dropdown-item" href="#">Salir</a>
+            <a class="dropdown-item " href="#">Mi perfil</a>
+            <a class="dropdown-item" [routerLink]="['/settingUser']">Ajustes</a>
+            <a class="dropdown-item" [routerLink]="['/logout/1']">Salir</a>
           </div>
         </li>
       </ul>  
  
     </div>
+    
   </nav>
 
 <!-- Dependindo la ruta en donde esta ubicado muestra el 

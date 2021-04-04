@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   public page_title:string;
   public user:User;
 
-  //variable para mostrar mensaje al user de la respuesta
+  //variable para mostrar mensaje de error o exioto (alert)
   public status:string;
 
 
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Componente de registro cargado');
-    console.log(this._userService.test());
+    // console.log(this._userService.test());
   }
 
   // Metodo que se llama en el form de Registro al clickear el boton
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     
     this._userService.register(this.user).subscribe(
       response=>{
-        if(response.status="success"){
+        if(response.status=="success"){
           this.status=response.status;
           form.reset();
         }else{
